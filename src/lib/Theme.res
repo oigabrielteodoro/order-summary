@@ -3,7 +3,7 @@ module Colors = {
   let title = "#253055"
   let paragraphy = "#777c92"
   let card = "#ffffff"
-  let secondary = "#dfe5fb"
+  let shape = "#e0e8ff"
 }
 
 module Typography = {
