@@ -42,12 +42,12 @@ module Styles = {
     "fontSize": "2.4rem",
     "color": Theme.Colors.title->colorToString,
     "textAlign": "center",
-    "fontWeight": "bold",
+    "fontWeight": "900",
   })
 
   let description = css({
     "fontSize": "1.8rem",
-    "fontWeight": "500",
+    "fontWeight": "700",
     "color": Theme.Colors.paragraphy->colorToString,
     "textAlign": "center",
     "marginTop": "2rem",
@@ -71,7 +71,7 @@ module Styles = {
 
   let orderPrice = css({
     "fontSize": "1.6rem",
-    "fontWeight": "500",
+    "fontWeight": "700",
     "color": Theme.Colors.paragraphy->colorToString,
   })
 

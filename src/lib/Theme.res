@@ -1,7 +1,7 @@
 module Colors = {
-  let primary = #hex("#382ae1")
-  let title = #hex("#28325c")
-  let paragraphy = #hex("#8c90a9")
+  let primary = #hex("#3829e0")
+  let title = #hex("#1f2f56")
+  let paragraphy = #hex("#7280a7")
   let card = #hex("#ffffff")
   let shape = #hex("#e0e8ff")
   let buttonText = #hex("#ffffff")
