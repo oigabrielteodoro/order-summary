@@ -1,48 +1,73 @@
-@module("./logo.svg")
-external logo: string = "default"
+open Render
+open Ancestor.Default
 
-%%raw("import './App.css'")
+let {toString: colorToString} = module(Theme.Colors)
+
+Emotion.injectGlobal({
+  "*": {
+    "padding": "0",
+    "outline": "0",
+    "margin": "0",
+    "boxSizing": "border-box",
+    "-webkit-font-smoothing": "antialiased",
+    "-moz-osx-font-smoothing": "grayscale",
+  },
+  "body": {
+    "fontFamily": Theme.Typography.fontFamily,
+    "background": Theme.Colors.shape->colorToString,
+    "backgroundImage": `url(${Assets.patternBackground})`,
+    "backgroundRepeat": "no-repeat",
+    "height": "100vh",
+    "display": "flex",
+    "flexDirection": "column",
+    "justifyContent": "center",
+    "alignItems": "center",
+  },
+  "html": {
+    "fontSize": "62.5%",
+  },
+  "button": {
+    "cursor": "pointer",
+  },
+})
+
+module Styles = {
+  open Emotion
+
+  let title = css({
+    "fontSize": "2.4rem",
+    "color": Theme.Colors.title->colorToString,
+    "textAlign": "center",
+    "fontWeight": "900",
+  })
+
+  let description = css({
+    "fontSize": "1.8rem",
+    "fontWeight": "700",
+    "color": Theme.Colors.paragraphy->colorToString,
+    "textAlign": "center",
+    "marginTop": "2rem",
+  })
+
+  let cancelOrderButton = css({
+    "background": "transparent",
+    "color": Theme.Colors.paragraphy->colorToString,
+    "boxShadow": "none",
+    "marginTop": "2rem",
+  })
+}
 
 @react.component
 let make = () => {
-  let (count, setCount) = React.useState(_ => 0)
-
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p> {"Hello Vite + React + ReScript!"->React.string} </p>
-      <p>
-        <button type_="button" onClick={_ => setCount(count => count + 1)}>
-          {"count is "->React.string} {count->Belt.Int.toString->React.string}
-        </button>
+  <Card>
+    <Box p=[xs(4)]>
+      <h1 className=Styles.title> {"Order Summary"->s} </h1>
+      <p className=Styles.description>
+        {"You can now listen to millions of songs, audiobooks, and podcasts on any device anywhare you like"->s}
       </p>
-      <p>
-        {"Edit "->React.string}
-        <code> {"App.jsx"->React.string} </code>
-        {" and save to test HMR updates."->React.string}
-      </p>
-      <p>
-        <a
-          className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          {"Learn React"->React.string}
-        </a>
-        {" | "->React.string}
-        <a
-          className="App-link"
-          href="https://vitejs.dev/guide/features.html"
-          target="_blank"
-          rel="noopener noreferrer">
-          {"Vite Docs"->React.string}
-        </a>
-        {" | "->React.string}
-        <a
-          className="App-link"
-          href="https://rescript-lang.org/"
-          target="_blank"
-          rel="noopener noreferrer">
-          {"ReScript Docs"->React.string}
-        </a>
-      </p>
-    </header>
-  </div>
+      <Order title="Annual Plan" price=59.99 />
+      <Button> "Proceed to Payment" </Button>
+      <Button className=Styles.cancelOrderButton> "Cancel Order" </Button>
+    </Box>
+  </Card>
 }
