@@ -11,6 +11,7 @@ module Styles = {
 @react.component
 let make = (~children) => {
   <Box
+    tag=#main
     display=[xs(#flex)]
     flexDirection=[xs(#column)]
     alignSelf=[xs(#center)]
